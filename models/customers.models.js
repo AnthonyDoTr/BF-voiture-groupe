@@ -18,12 +18,11 @@ const customersModel = {
 
             const request = new mssql.Request(db)
             request.input('Id', mssql.Int, id)
-            
+
             const result = await request.query(querySQL)
 
-            if (result.recordset.length !== 1) {
+            if (result.recordset.length !== 1)
                 return null
-            }
             return result.recordset[0]
         }
         finally {
@@ -32,7 +31,6 @@ const customersModel = {
     },
 
     create : async (newCustomers) => {
-
         let db
         try {
             db = await getDbConnection()
