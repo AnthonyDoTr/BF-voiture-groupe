@@ -5,4 +5,8 @@ routerSales
     .route("/")
     .get(salesController.getAll);
 
+routerSales
+    .route("/:id")
+    .get(salesController.getOne);
+
 module.exports = routerSales;
