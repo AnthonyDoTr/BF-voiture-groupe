@@ -8,6 +8,9 @@ testDbConnection();
 
 app.use(express.json());
 
+const routerBase = require("./routers/base.router")
+app.use("/bf_voiture", routerBase);
+
 app.all("*", (req, res, next) => {
 
     if (res.locals.message != undefined) {
