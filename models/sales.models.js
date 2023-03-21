@@ -29,6 +29,23 @@ const salesModels = {
         finally {
             db?.close();
         }
+    },
+
+    create: async (newSale) => {
+        let db;
+
+        try {
+            db = await getDbConnection();
+
+            const querySQL = 'INSERT INTO sales (customer_id, car_id, price)'
+                    + ' OUTPUT inserted.id'
+                    + ' VALUES (@customer_id, @car_id, @price)';
+            
+            const request = new mssql.Request(db);
+        } 
+        finally {
+
+        }
     }
 };
 
