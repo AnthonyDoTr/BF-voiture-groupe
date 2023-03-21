@@ -13,6 +13,11 @@ const salesService = {
         } else {
             return { errorMessage: `La vente numéro: ${id} n'existe pas` };
         }
+    },
+
+    create: async (newSale) => {
+        let newSaleCreated = await salesModels.create(newSale);
+        return newSaleCreated;
     }
 };
 

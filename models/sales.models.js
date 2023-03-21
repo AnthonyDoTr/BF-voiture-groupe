@@ -21,7 +21,7 @@ const salesModels = {
 
             const result = await request.query(querySQL);
 
-            if(result.recordset.length !== 1) {
+            if (result.recordset.length !== 1) {
                 return null;
             }
             return result.recordset[0];
@@ -38,13 +38,19 @@ const salesModels = {
             db = await getDbConnection();
 
             const querySQL = 'INSERT INTO sales (customer_id, car_id, price)'
-                    + ' OUTPUT inserted.id'
-                    + ' VALUES (@customer_id, @car_id, @price)';
-            
-            const request = new mssql.Request(db);
-        } 
-        finally {
+                + ' OUTPUT inserted.id'
+                + ' VALUES (@customer_id, @car_id, @price)';
 
+            const request = new mssql.Request(db);
+            request.input('customer_id', mssql.Int, newSale.customer_id);
+            request.input('car_id', mssql.Int, newSale.car_id);
+            request.input('price', mssql.Float, newSale.price);
+
+            const result = await request.query(querySQL);
+            return result.recordset[0];
+        }
+        finally {
+            db?.close();
         }
     }
 };
