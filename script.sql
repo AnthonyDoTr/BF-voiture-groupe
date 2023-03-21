@@ -1,12 +1,3 @@
-bf_voiture
-
-
-------------------------------------
-SCRIPT DB
-------------------------------------
-
-/* CREATION DES TABLES */
-
 CREATE TABLE cars (
 id INT PRIMARY KEY,
 make VARCHAR(255),
@@ -32,8 +23,6 @@ price DECIMAL(10,2),
 FOREIGN KEY (customer_id) REFERENCES customers(id),
 FOREIGN KEY (car_id) REFERENCES cars(id)
 );
-
-/* REMPLISSAGE DES DONNEES */
 
 insert into cars (id, make, model, year, price, quantity) values (1, 'Dodge', 'Avenger', 1995, 93533.4, 13);
 insert into cars (id, make, model, year, price, quantity) values (2, 'Chrysler', 'Concorde', 1997, 49170.5, 34);
