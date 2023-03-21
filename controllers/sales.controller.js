@@ -19,6 +19,19 @@ const salesController = {
         } else {
             throw new Error("Une erreur est survenue ...");
         }
+    },
+
+    create: async (req, res, next) => {
+
+        let newSale = {
+            customer_id: req.dataValidate.customer_id,
+            car_id: req.dataValidate.car_id,
+            price: req.dataValidate.price,
+        };
+
+        let newSaleCreated = await salesService.create(newSale);
+
+        res.json(newSaleCreated);
     }
 };
 
