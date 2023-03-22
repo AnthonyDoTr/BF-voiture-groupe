@@ -52,6 +52,28 @@ const salesModels = {
         finally {
             db?.close();
         }
+    },
+
+    update: async () => {
+
+    },
+
+    delete: async (id) => {
+        let db;
+        try {
+            db = await getDbConnection();
+            const querySQL = 'DELETE FROM sales WHERE id = @id';
+
+            const request = new mssql.Request(db);
+            request.input('Id', mssql.Int, id);
+
+            const result = await request.query(querySQL);
+            
+            return id;
+            
+        } finally {
+            db?.close();
+        }
     }
 };
 

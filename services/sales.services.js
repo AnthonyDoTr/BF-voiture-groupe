@@ -18,6 +18,20 @@ const salesService = {
     create: async (newSale) => {
         let newSaleCreated = await salesModels.create(newSale);
         return newSaleCreated;
+    },
+
+    update: async () => {
+
+    },
+
+    delete: async (id) => {
+        let deletedSales = await salesModels.delete(id);
+
+        if (deletedSales.id != undefined) {
+            return deletedSales;
+        } else {
+            return { errorMessage: `La vente numéro ${id} n'existe pas` };
+        }
     }
 };
 
