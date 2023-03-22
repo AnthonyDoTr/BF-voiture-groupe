@@ -41,6 +41,16 @@ $ nodemon
 
 ## Sales
 ***
+* **GET**  `localhost:3000/bf_voiture/sales` 
+Donne toutes les ventes.
+* **POST**`localhost:3000/bf_voiture/sales`
+Crée une ventes.
+* **GET** `localhost:3000/bf_voiture/sales/1`
+Donne la vente numéro 1.
+* **DELETE** `localhost:3000/bf_voiture/sales/1`
+Supprimer la vente numéro 1.
+* **UPDATE** `localhost:3000/bf_voiture/sales/1`
+Modifie la vente numéro 1.
 
 ## Auteurs
 ***
