@@ -62,14 +62,14 @@ const salesModels = {
         let db;
         try {
             db = await getDbConnection();
-            const querySQL = 'DELETE FROM sales WHERE id = @id';
+            const querySQL = 'DELETE FROM sales OUTPUT deleted.id WHERE id = @id';
 
             const request = new mssql.Request(db);
             request.input('Id', mssql.Int, id);
 
             const result = await request.query(querySQL);
             
-            return id;
+            return result.recordset[0];
             
         } finally {
             db?.close();
