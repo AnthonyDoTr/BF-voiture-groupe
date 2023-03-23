@@ -1,0 +1,23 @@
+.main {
+    padding: 1rem;
+    background-color: silver;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.main ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 2ch;
+    padding: 0;
+    margin: 0;
+}
+
+a, a:hover, a:visited, a:active {
+    color: black;
+}
+
+a.active, a.active:hover, a.active:visited, a.active:active{
+    color: cornflowerblue;
+}
