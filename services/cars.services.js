@@ -21,9 +21,20 @@ const carsService = {
     update : async(carToUpdate) =>{
         let upEmp = await carsModel.update(carToUpdate)
         return upEmp
-    }
+    },
 
-    // TODO DELETE
+    delete: async(id) => {
+        let deletedCars = await carsModel.delete(id)
+        console.log(deletedCars);
+
+        if(deletedCars.id != undefined) {
+
+            return deletedCars
+        }else{
+            return { errorMessage : `La voiutre numéro ${id} n'existe pas`}
+        }
+    }
+    
 
 }
 
