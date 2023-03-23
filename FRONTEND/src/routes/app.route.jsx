@@ -1,3 +1,4 @@
+import CarsListPage from "../pages/cars/cars-list.page";
 import CarsPage from "../pages/cars/cars.page";
 import CustomersPage from "../pages/customers/customers.page";
 import NotFound from "../pages/errors/not-found.page";
@@ -11,7 +12,13 @@ const appRoute = [
     },
     {
         path:'cars',
-        element : <CarsPage/>
+        element : <CarsPage/>,
+        children : [
+            {
+                index : true,
+                element : <CarsListPage/>
+            }
+        ]
     },
     {
         path :'customers',

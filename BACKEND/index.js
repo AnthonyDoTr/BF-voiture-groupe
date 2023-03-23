@@ -1,12 +1,20 @@
 const express = require('express');
 const dotenv = require("dotenv").config();
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
+
 
 let { testDbConnection } = require("./models/db");
 testDbConnection();
 
 app.use(express.json());
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+})
+
 
 const routerBase = require("./routers/base.router")
 app.use("/bf_voiture", routerBase);
@@ -29,7 +37,6 @@ app.use((error, req, res, next) => {
     console.log("Error Message : " + error);
     res.status(500).json({ "Error": req.url, "Message": "" + error, "ErrorCode": 500 });
 });
-
 
 
 app.listen(port, console.log(`server start in port ${port}`));
