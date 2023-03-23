@@ -16,7 +16,7 @@ const carsController = {
             res.json(oneCar)
         }
         else if(oneCar.errorMessage !=undefined){
-            res.locals.message = oneEmp
+            res.locals.message = oneCar
             next()
         }
         else{
@@ -37,7 +37,7 @@ const carsController = {
             model : req.body.model,
             year : req.body.year,
             price : req.body.price,
-            quantiy : req.body.quantiy
+            quantiy : req.body.quantity
         }
 
         let newCarCreated = await carsService.create(newCar)
@@ -74,6 +74,28 @@ const carsController = {
         else
         {
             throw new Error("Une erreur business internet s'est produite ... :((")
+        }
+    },
+
+    delete : async(req,res,next) => {
+        let id = req.params.id
+        let carsToDeleted = await carsService.getOne(id)
+
+        if(carsToDeleted.id != undefined){
+            let carsDel = await carsService.delete(id)
+
+            if(carsDel.id !=undefined){
+                res.json(carsDel)
+            }
+            else if(carsDel.errorMessage != undefined){
+                res.locals.message = carsDel
+                next()
+            }
+        }else if(carsToDeleted.errorMessage != undefined){
+            res.locals.message = carsToDeleted
+            next()
+        }else{
+            throw new Error("Un erreur est survenu...")
         }
     }
 
