@@ -48,7 +48,7 @@ const carsController = {
      *   "model" : "chiron",
      *   "year" : 1995,
      *    "price" : 9800000,
-     *   "quantit" : 25
+     *   "quantity" : 25
      * }
      */
     create: async (req, res, next) => {
@@ -64,7 +64,7 @@ const carsController = {
             model: req.body.model,
             year: req.body.year,
             price: req.body.price,
-            quantiy: req.body.quantity
+            quantity: req.body.quantity
         }
 
         let newCarCreated = await carsService.create(newCar)
@@ -95,8 +95,8 @@ const carsController = {
             if (req.body.price != undefined)
                 carToUpdate.price = req.body.price
 
-            if (req.body.quantiy != undefined)
-                carToUpdate.quantiy = req.body.quantiy
+            if (req.body.quantity != undefined)
+                carToUpdate.quantity = req.body.quantity
         }
         else if (carToUpdate.errorMessage != undefined) {
             res.locals.message = carToUpdate
