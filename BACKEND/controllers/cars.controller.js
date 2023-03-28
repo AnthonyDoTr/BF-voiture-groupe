@@ -10,7 +10,7 @@ const carsController = {
      */
     getAll: async (req, res) => {
         let allCars = await carsService.getAll()
-        console.log(req.user)
+        console.log(req.user.id)
         res.json(allCars)
     },
 

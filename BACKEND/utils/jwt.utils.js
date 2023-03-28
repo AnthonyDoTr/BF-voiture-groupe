@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 
-const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = "digitalcity_fs_js_2023"
 const algorithm = "HS512"
 const expiresIn = "2h" //https://github.com/vercel/ms
 
@@ -30,9 +30,12 @@ const generateToken = (insertedUser) => {
 
 const verifyToken = async (token) => {
 
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, JWT_SECRET, (error, data) => {
+    if (!token)
+        return Promise.reject(new Error("Invalid Token"))
 
+    return new Promise((resolve, reject) => {
+
+        jwt.verify(token, JWT_SECRET, (error, data) => {
             if (error) return reject(error)
 
             resolve(data)

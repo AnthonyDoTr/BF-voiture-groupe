@@ -17,8 +17,8 @@ const Login = () => {
       .then((response) => {
         const res = response.data
         localStorage.setItem("jwt", JSON.stringify(res.jwt))
-        // const jwt = localStorage.getItem("jwt")
-        // console.log(jwt)
+        const jwt = localStorage.getItem("jwt")
+        console.log(jwt)
 
         navigate("/")
       })

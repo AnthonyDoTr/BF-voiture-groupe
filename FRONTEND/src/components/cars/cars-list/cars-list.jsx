@@ -6,7 +6,7 @@ const CarsList = () => {
   const [data, setData] = useState(null)
   const navigate = useNavigate()
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt")
+    const jwt = JSON.parse(localStorage.getItem("jwt"))
     if (!jwt) {
       navigate("/login")
     }
