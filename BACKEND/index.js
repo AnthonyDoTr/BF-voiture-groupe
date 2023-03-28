@@ -8,7 +8,7 @@ let { testDbConnection } = require("./models/db");
 testDbConnection();
 
 app.use(express.json());
-app.use((req,res,next) => {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -18,6 +18,12 @@ app.use((req,res,next) => {
 
 const routerBase = require("./routers/base.router")
 app.use("/bf_voiture", routerBase);
+
+const expressJsDocSwagger = require("express-jsdoc-swagger")
+const swaggerOptions = require('./swaggerOptions')
+expressJsDocSwagger(app)(swaggerOptions)
+
+
 
 app.all("*", (req, res, next) => {
 
