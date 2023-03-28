@@ -14,6 +14,7 @@ const authJwt = (role = "user") => {
 
             try {
                 let decodeJwt = await verifyToken(finalJwt)
+                console.log(decodeJwt)
                 let userOk = await authService.getOneByLogin(decodeJwt.login)
                 next()
             }

@@ -7,11 +7,11 @@ const authController = {
     login: async (req, res, next) => {
 
         let authUser = req.dataValidate
-
+        console.log(authUser)
         let userExist = await authService.getOneByLogin(authUser.login)
 
         if (userExist.id != undefined) {
-            let comparePassword = await bcrypt.compare(authUser.pwd, userExist.pwd)
+            let comparePassword = await bcrypt.compare(authUser.password, userExist.password)
 
             if (comparePassword) {
                 let token = await generateToken(userExist)
@@ -33,7 +33,7 @@ const authController = {
         let userInfos = req.dataValidate
         //faire des trucs
         let insertedUser = await authService.create(userInfos)
-
+        console.log(userInfos)
         let token = await generateToken(insertedUser)
         res.json({ jwt: token })
     }
