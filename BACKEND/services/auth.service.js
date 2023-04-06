@@ -16,7 +16,7 @@ const authService = {
 
     create: async (newUser) => {
         const saltRounds = 10;
-        newUser.pwd = await bcrypt.hash(newUser.pwd, saltRounds)
+        newUser.password = await bcrypt.hash(newUser.password, saltRounds)
         let userIdCreated = await usersModels.create(newUser)
 
         return userIdCreated
